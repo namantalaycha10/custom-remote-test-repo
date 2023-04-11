@@ -1,14 +1,7 @@
 image: eahrend/cron:latest
 name: foobarbaz
 imagePullPolicy: Always
-envVars: |-
-  GCP_INTEL_DB_PW: "gcp:secretmanager:projects/150020959505/secrets/GCP_INTEL_DB_PW/versions/1"
-  LDF_DB_PW: "gcp:secretmanager:projects/150020959505/secrets/LDF_DB_PW/versions/1"
-  USER_DV01_USER_PW: "gcp:secretmanager:projects/150020959505/secrets/USER_DV01_USER_PW/versions/4"
-  TAPE_CRACKER_INTEL_ADMIN_PW: "gcp:secretmanager:projects/150020959505/secrets/TAPE_CRACKER_INTEL_ADMIN_PW/versions/2"
-  LDF_PW: "gcp:secretmanager:projects/150020959505/secrets/LDF_PW/versions/1"
-  INTEL_API_KEY: "gcp:secretmanager:projects/150020959505/secrets/INTEL_API_KEY/versions/1"
-  FOOBARBAZ: SHAZBOT
+envVars: <+configFile.getAsString("v1")>
 schedule: "* * * * *"
 command: |-
   /usr/local/bin/secrets-init
