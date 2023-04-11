@@ -1,0 +1,28 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  concurrencyPolicy: {{ .Values.concurrencyPolicy }}
+  failedJobsHistoryLimit: {{ .Values.failedJobsHistoryLimit }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: {{ .Values.serviceAccount }}
+          containers:
+          - image: {{ .Values.image }}
+            imagePullPolicy: {{ .Values.imagePullPolicy }}
+            name: {{ .Values.name }}
+            command: 
+            {{- range (split "\n" .Values.command )}}
+              - {{ . }}
+            {{- end }}
+            env:
+            {{- range $key, $value := fromYaml .Values.envVars  }}
+              - name: {{ $key }}
+                value: {{ $value }}
+            {{- end }}
+  schedule: {{ .Values.schedule | quote }}
+  successfulJobsHistoryLimit: {{ .Values.successfulJobsHistoryLimit }}

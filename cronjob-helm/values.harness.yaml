@@ -1,0 +1,18 @@
+name: <+serviceVariables.JOB_NAME>
+namespace: <+serviceVariables.NAMESPACE>
+image: us-east1-docker.pkg.dev/dv01-231516/dv01/intelligence:master-7be8a433
+envVars: <+serviceVariables.ENV_VARS>
+schedule: <+serviceVariables.SCHEDULE>
+command: <+serviceVariables.COMMAND>
+resources:
+  limits:
+    cpu: 50m
+    memory: 256Mi
+  requests:
+    cpu: 50m
+    memory: 256Mi
+serviceAccount: <+serviceVariables.SERVICE_ACCOUNT>
+failedJobsHistoryLimit: 1
+successfulJobsHistoryLimit: 3
+concurrencyPolicy: Forbid
+restartPolicy: Never
