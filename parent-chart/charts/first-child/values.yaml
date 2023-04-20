@@ -2,6 +2,8 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# evaluate this wrong expr: <+infra.relName>
+
 appName: "first-child"
 kubeApiVersion: "apps/v1"
 replicaCount: 2
