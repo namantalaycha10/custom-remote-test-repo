@@ -7,8 +7,8 @@ replicaCount: 1
 
 namespace: default
 
-image: <+artifact.image>
-dockercfg: <+artifact.imagePullSecret>
+image: nginx:latest
+dockercfg: 
 pullPolicy: Always
 
 service:
