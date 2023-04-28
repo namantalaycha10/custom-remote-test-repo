@@ -11,6 +11,7 @@ data:
 {{- if .Values.env.secrets}}
 apiVersion: v1
 kind: Secret
+type: Opaque
 metadata:
   name: {{.Values.name}}
 stringData:
@@ -27,7 +28,6 @@ metadata:
   name: {{.Values.name}}-dockercfg
   annotations:
     harness.io/skip-versioning: "true"
-type: Opaque    
 data:
   .dockercfg: {{.Values.dockercfg}}
 type: kubernetes.io/dockercfg
