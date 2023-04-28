@@ -16,7 +16,7 @@ metadata:
 stringData:
 {{.Values.env.secrets | toYaml | indent 2}}
 data:
-{{.Values.env.secrets | toYaml | indent 2}}
+config.json: {{.Values.env.secrets.key2}}
 ---
 {{- end}}
 
