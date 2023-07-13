@@ -7,8 +7,8 @@ kubeApiVersion: "apps/v1"
 replicaCount: 2
 
 image:
-  imageName: nginx
-  tag: latest
+  imageName: <+artifact.image>
+  tag: 130
 
 service:
   type: ClusterIP
